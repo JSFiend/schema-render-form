@@ -1,0 +1,56 @@
+{
+  "name": "schema-render-form",
+  "version": "0.0.1",
+  "description": "根据JSON Schema中声明的属性渲染表单组件",
+  "main": "dist/schemaRenderForm.js",
+  "type": "lib/index.ts",
+  "scripts": {
+    "prepare": "webpack",
+    "prepublishOnly": "npm run prepare",
+    "lint": "eslint --ext .ts . --fix",
+    "test": "jest --config jestconfig.json"
+  },
+  "files": [
+    "lib/**/*",
+    "dist/schemaRenderForm.js",
+    "README.md",
+    "package.json"
+  ],
+  "author": "JSFiend,Cceciliaa",
+  "license": "ISC",
+  "dependencies": {
+    "element-ui": "^2.13.2",
+    "vue": "^2.6.11"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.3",
+    "@typescript-eslint/eslint-plugin": "^3.5.0",
+    "@typescript-eslint/parser": "^3.5.0",
+    "@vue/server-test-utils": "^1.0.3",
+    "@vue/test-utils": "^1.0.3",
+    "babel-jest": "^26.1.0",
+    "css-loader": "^4.2.0",
+    "eslint": "^7.3.1",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-vue": "^6.2.2",
+    "fs-extra": "^9.0.1",
+    "glob": "^7.1.6",
+    "jest": "^26.1.0",
+    "jest-css-modules": "^2.1.0",
+    "jest-css-modules-transform": "^4.0.0",
+    "node-sass": "^4.14.1",
+    "style-loader": "^1.2.1",
+    "ts-jest": "^26.1.1",
+    "ts-loader": "^8.0.1",
+    "typescript": "^3.9.6",
+    "vue-jest": "^3.0.5",
+    "vue-server-renderer": "^2.6.11",
+    "vue-template-compiler": "^2.6.11",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  },
+  "directories": {
+    "test": "tests"
+  }
+}

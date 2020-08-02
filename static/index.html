@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script src="vue.js"></script>
+  <script src="element-ui.js"></script>
+  <link rel="stylesheet" href="element-ui.css">
+  <script src="../dist/schemaRenderForm.js"></script>
+  <title>Title</title>
+  <style>
+    html, body {
+      width: 100%;
+      height: 100%;
+      background: #fdfdfd;
+    }
+
+    #app {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    #app > div {
+      width: 50%;
+      padding: 1em;
+      align-items: stretch;
+    }
+
+    #app > div:first-child {
+      border-right: 1px solid #ddd;
+    }
+
+  </style>
+</head>
+<body>
+<div id="app">
+  <div>
+    <h1>渲染输入框</h1>
+    <schema-form v-model="data" :schema="schema" @change="change" label-width="85px"></schema-form>
+  </div>
+  <div id="info">
+    <h1>data</h1>
+    <pre>{{JSON.stringify(data,null, 2)}}</pre>
+    <h1>shema</h1>
+    <pre>{{JSON.stringify(schema,null, 2)}}</pre>
+
+  </div>
+</div>
+</body>
+<script>
+  Vue.prototype.$ELEMENT.size='small';
+  new Vue({
+    data() {
+      return {
+        data: {
+          checkBox: [],
+          objectArray: [{ name: '', age: '', sex: '' }],
+        },
+        schema: {
+          properties: {
+            text: {
+              title: "文本",
+              type: "string",
+              text: "我是一个文本",
+              titleHref: "",
+              attrs: {
+                href: "https://www.npmjs.com/package/schema-render-form"
+              }
+            },
+            input: {
+              title: "输入框",
+              type: "string",
+              description: "我是一个被敲打的输入框"
+            },
+            toolTip: {
+              title: "标签提示",
+              type: "string",
+              toolTip: "前端产品组",
+              description: "hover 感叹号会提示文本哦"
+            },
+            titleHref: {
+              title: "标签链接",
+              titleHref: "https://www.npmjs.com/package/schema-render-form",
+              type: "string",
+              description: "点击标签会另起一个窗口打开",
+              required: true
+            },
+            textarea: {
+              title: "文本域",
+              type: "string",
+              attrs: {
+                type: "textarea",
+                rows: 2
+              }
+            },
+            number: {
+              title: "数字输入框",
+              type: "number"
+            },
+            switch: {
+              title: "开关",
+              type: "boolean"
+            },
+            checkBox: {
+              title: "多选框",
+              type: "array",
+              anyOf: [
+                { value: "frontend", label: "前台" },
+                { value: "backend", label: "后台" }
+              ]
+            },
+            radio: {
+              title: "单选框",
+              type: "string",
+              oneOf: [
+                { value: "male", label: "男" },
+                { value: "female", label: "女" }
+              ]
+            },
+            select: {
+              title: "下拉选择框",
+              type: "string",
+              enum: [
+                { value: "sz", label: "深圳" },
+                { value: "gz", label: "广州" }
+              ]
+            },
+            color: {
+              title: "颜色选择器",
+              type: "string",
+              format: "color"
+            },
+            time: {
+              title: "时间选择器",
+              type: "string",
+              format: "date"
+            },
+            objectArray: {
+              type: "array",
+              items: {
+                type: "object",
+                properties: {
+                  name: {
+                    title: "名字",
+                    type: "string"
+                  },
+                  age: {
+                    title: "年龄",
+                    type: "number"
+                  },
+                  sex: {
+                    title: "性别",
+                    type: "string",
+                    oneOf: [
+                      { value: "male", label: "男" },
+                      { value: "female", label: "女" }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      };
+    },
+    methods: {
+      change(data) {
+        this.data = { ...data };
+      }
+    }
+  }).$mount("#app");
+
+</script>
+</html>
